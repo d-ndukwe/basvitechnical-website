@@ -1,0 +1,193 @@
+---
+import { companyData } from '../company';
+---
+
+<section id="contact" class="py-20 bg-slate-950 text-slate-100 relative overflow-hidden border-t border-slate-800/80">
+  <!-- Decorative Glow -->
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Request a Project Consultation
+      </h2>
+      <p class="text-base text-slate-400 leading-relaxed">
+        Submit your project details or tender inquiry below. Our COREN-certified engineering team responds within 24 hours.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Corporate Office Info -->
+      <div class="lg:col-span-5 space-y-8 bg-slate-900/80 border border-slate-800 rounded-2xl p-8 backdrop-blur-sm">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-2">Corporate Headquarters</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Active field operations across Rivers State, the Federal Capital Territory (Abuja), Delta, Gombe, and nationwide.
+          </p>
+        </div>
+
+        <div class="space-y-6 text-sm">
+          <!-- Address -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-blue-950 border border-blue-800/60 flex items-center justify-center text-blue-400 shrink-0 mt-1">
+              📍
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Office Address</p>
+              <p class="text-slate-200 font-medium leading-normal mt-1">
+                {companyData.address}
+              </p>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-blue-950 border border-blue-800/60 flex items-center justify-center text-blue-400 shrink-0 mt-1">
+              📞
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Direct Line</p>
+              <a href={`tel:${companyData.phone}`} class="text-white font-bold hover:text-blue-400 transition-colors mt-1 inline-block">
+                {companyData.phone}
+              </a>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-blue-950 border border-blue-800/60 flex items-center justify-center text-blue-400 shrink-0 mt-1">
+              ✉️
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Official Email</p>
+              <a href={`mailto:${companyData.email}`} class="text-white font-bold hover:text-blue-400 transition-colors mt-1 inline-block">
+                {companyData.email}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statutory Proof Badge -->
+        <div class="pt-6 border-t border-slate-800/80 space-y-2">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Regulatory Compliance:</p>
+          <div class="flex flex-wrap gap-2 text-[11px] font-semibold text-slate-300">
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800">{companyData.rcNumber}</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800">NEMSA Certified</span>
+            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800">COREN Practice</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Netlify-Native RFQ Form -->
+      <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl">
+        <form 
+          name="basvi-rfq" 
+          method="POST" 
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="space-y-6"
+        >
+          <!-- Spam Honeypot -->
+          <p class="hidden">
+            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
+          <!-- Hidden Input required by Netlify -->
+          <input type="hidden" name="form-name" value="basvi-rfq" />
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Full Name / Contact Person *</label>
+              <input 
+                type="text" 
+                name="name" 
+                required 
+                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+                placeholder="e.g. Engr. John Doe"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Organization / Company Name</label>
+              <input 
+                type="text" 
+                name="organization" 
+                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+                placeholder="e.g. Ministry / Corporate Ltd"
+              />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
+              <input 
+                type="email" 
+                name="email" 
+                required 
+                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+                placeholder="client@domain.com"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Phone Number *</label>
+              <input 
+                type="tel" 
+                name="phone" 
+                required 
+                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+                placeholder="+234..."
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Engineering Service Required *</label>
+            <select 
+              name="service_type" 
+              required
+              class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-slate-300 rounded-lg p-3.5 text-sm outline-none transition-colors"
+            >
+              <option value="">Select Service Category...</option>
+              <option value="High Voltage & Power Infrastructure">High Voltage & Power Infrastructure (330KV / LV Stringing)</option>
+              <option value="Solar & Renewable Mini-Grids">Solar & Renewable Mini-Grids / Street Lighting</option>
+              <option value="Water Infrastructure & Boreholes">Water Infrastructure & Boreholes (100kL Tanks)</option>
+              <option value="Technical Procurement & BEME Evaluation">Technical Procurement & BEME Site Evaluation</option>
+              <option value="General Engineering Contracting">General Engineering Contracting</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Project Scope / Details *</label>
+            <textarea 
+              name="message" 
+              rows="4" 
+              required 
+              class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+              placeholder="Describe project location, required capacity, timeline, or tender specs..."
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-lg shadow-blue-600/30 transition-all text-sm tracking-wide uppercase cursor-pointer"
+          >
+            Submit Request for Quote
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Corporate Footer -->
+    <footer class="mt-20 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+      <p>© {new Date().getFullYear()} {companyData.name} ({companyData.rcNumber}). All rights reserved.</p>
+      <p class="text-slate-400">NEMSA Certified • COREN Registered Electrical Engineers</p>
+    </footer>
+
+  </div>
+</section>

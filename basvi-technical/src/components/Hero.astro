@@ -1,0 +1,119 @@
+---
+import { companyData } from '../company';
+
+// Extract high-level metrics dynamically from companyData
+const gombeProject = companyData.projects.find((p: any) => p.client.includes("Gombe"));
+const topCert = companyData.certifications.find((c: any) => c.name.includes("CAC"));
+---
+
+<section class="relative bg-slate-950 text-white overflow-hidden py-20 lg:py-28 scroll-smooth">
+  
+  <!-- BACKGROUND LAYER (Absolute & Z-Index 0) -->
+  <div class="fixed inset-0 z-0">
+    <!-- Background Image -->
+    <img 
+      src="/newradio.webp" 
+      alt="Engineering and Infrastructure Background" 
+      class="w-full h-full object-cover object-center"
+    />
+    <!-- Dark Blue Gradient Overlays for High Text Contrast -->
+    <div class="absolute inset-0 bg-slate-950/75"></div>
+    <div class="absolute inset-0 bg-linear-to-r from-slate-650 via-slate-900/20 to-blue-950/10"></div>
+  </div>
+
+  <!-- CONTENT LAYER (Relative & Z-Index 10) -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Content Column -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        
+        <!-- Dynamic Regulatory Badge -->
+        <!-- <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-950/80 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>CAC Reg: {topCert?.code || companyData.rcNumber} | NEMSA & COREN Certified</span>
+        </div> -->
+
+        <!-- Animated B2B Headline -->
+<h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+  Delivering Innovative
+  <span class="inline-grid relative overflow-hidden align-bottom text-blue-500 h-[1.2em]">
+    <span id="rotator-text" class="col-start-1 row-start-1 inline-block transition-all duration-500 ease-out transform translate-y-0 opacity-100">
+      Engineering
+    </span>
+  </span> Solutions
+</h1>
+
+        <!-- Strategic Value Proposition -->
+        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+          {companyData.name} delivers certified, safety-first electrical contracting, solar mini-grids, water engineering, and high-voltage line trace maintenance for federal, state, and corporate clients across Nigeria.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+          <a 
+            href="#contact" 
+            class="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-lg shadow-blue-600/30 transition-all text-center"
+          >
+            Request Project Quote
+          </a>
+          <a 
+            href="#projects" 
+            class="w-full sm:w-auto px-8 py-4 bg-slate-800/90 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold rounded-lg transition-all text-center"
+          >
+            View Executed Contracts
+          </a>
+        </div>
+
+        <!-- Dynamic Compliance Badges Bar -->
+        <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 sm:grid-cols-4 gap-3 text-center text-xs font-semibold text-slate-400">
+          {companyData.certifications.map((cert: any) => (
+            <div class="p-2 rounded bg-slate-900/60 border border-slate-800/80 backdrop-blur-xs">
+              <p class="text-white font-bold">{cert.name}</p>
+              <p class="text-[10px] text-slate-400 truncate">{cert.code}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+<script>
+  const words = [
+    "Procurement",
+    "Construction",
+    "Installation",
+    "Project Management",
+    "Field Support"
+  ];
+
+  let currentIndex = 0;
+  const textEl = document.getElementById("rotator-text");
+
+  if (textEl) {
+    setInterval(() => {
+      // 1. Slide current word DOWN and fade out
+      textEl.style.transform = "translateY(100%)";
+      textEl.style.opacity = "0";
+
+      setTimeout(() => {
+        // 2. Change word and instantly reposition above (top) without animation
+        currentIndex = (currentIndex + 1) % words.length;
+        textEl.textContent = words[currentIndex];
+        textEl.style.transition = "none";
+        textEl.style.transform = "translateY(-100%)";
+
+        // 3. Animate down into place from above
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            textEl.style.transition = "all 500ms ease-out";
+            textEl.style.transform = "translateY(0)";
+            textEl.style.opacity = "1";
+          });
+        });
+      }, 500); // Matches the 500ms exit transition
+    }, 3200); // Swaps every 3.2 seconds
+  }
+</script>
