@@ -1,7 +1,7 @@
 export const companyData = {
   name: "BASVI Technical Services Ltd",
   rcNumber: "RC 1601462",
-  phone: "+234 701 586 3883",
+  phone: "+234 708 179 1860",
   email: "info@basvitechnical.com",
   address1: "No. 8 Gbenga Ashafa Street Park View Estate, Ikoyi, Lagos, Nigeria",
   address2: "V150A RIVTAF Golf Estate, Trans-Amadi, Port Harcourt, Rivers, Nigeria",
