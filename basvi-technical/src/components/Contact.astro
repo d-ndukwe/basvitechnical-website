@@ -40,6 +40,7 @@ import { companyData } from '../company';
               <p class="text-slate-200 font-medium leading-normal mt-1">
                 1. {companyData.address1}
               </p>
+              <br>
               <p class="text-slate-200 font-medium leading-normal mt-1">
                 2. {companyData.address2}
               </p>
@@ -86,102 +87,137 @@ import { companyData } from '../company';
 
       <!-- Right Column: Netlify-Native RFQ Form -->
       <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl">
-        <form 
-          name="basvi-rfq" 
-          method="POST" 
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          class="space-y-6"
-        >
-          <!-- Spam Honeypot -->
-          <p class="hidden">
-            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-          </p>
+        <!-- Inside src/components/Contact.astro -->
 
-          <!-- Hidden Input required by Netlify -->
-          <input type="hidden" name="form-name" value="basvi-rfq" />
+<form id="rfq-form" class="space-y-6">
+  <div class="grid sm:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Full Name / Contact Person *</label>
+      <input 
+        type="text" 
+        name="name" 
+        id="name"
+        required 
+        class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+        placeholder="e.g. Engr. John Doe"
+      />
+    </div>
 
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Full Name / Contact Person *</label>
-              <input 
-                type="text" 
-                name="name" 
-                required 
-                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
-                placeholder="e.g. Engr. John Doe"
-              />
-            </div>
+    <div>
+      <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Organization / Company Name</label>
+      <input 
+        type="text" 
+        name="organization" 
+        id="organization"
+        class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+        placeholder="e.g. Ministry / Corporate Ltd"
+      />
+    </div>
+  </div>
 
-            <div>
-              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Organization / Company Name</label>
-              <input 
-                type="text" 
-                name="organization" 
-                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
-                placeholder="e.g. Ministry / Corporate Ltd"
-              />
-            </div>
-          </div>
+  <div class="grid sm:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
+      <input 
+        type="email" 
+        name="email" 
+        id="email"
+        required 
+        class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+        placeholder="client@domain.com"
+      />
+    </div>
 
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
-              <input 
-                type="email" 
-                name="email" 
-                required 
-                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
-                placeholder="client@domain.com"
-              />
-            </div>
+    <div>
+      <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Phone Number *</label>
+      <input 
+        type="tel" 
+        name="phone" 
+        id="phone"
+        required 
+        class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+        placeholder="+234..."
+      />
+    </div>
+  </div>
 
-            <div>
-              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Phone Number *</label>
-              <input 
-                type="tel" 
-                name="phone" 
-                required 
-                class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
-                placeholder="+234..."
-              />
-            </div>
-          </div>
+  <div>
+    <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Engineering Service Required *</label>
+    <select 
+      name="service_type" 
+      id="service_type"
+      required
+      class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-slate-300 rounded-lg p-3.5 text-sm outline-none transition-colors"
+    >
+      <option value="">Select Service Category...</option>
+      <option value="High Voltage & Power Infrastructure">High Voltage & Power Infrastructure (330KV / LV Stringing)</option>
+      <option value="Solar & Renewable Mini-Grids">Solar & Renewable Mini-Grids / Street Lighting</option>
+      <option value="Water Infrastructure & Boreholes">Water Infrastructure & Boreholes (100kL Tanks)</option>
+      <option value="Technical Procurement & BEME Evaluation">Technical Procurement & BEME Site Evaluation</option>
+      <option value="General Engineering Contracting">General Engineering Contracting</option>
+    </select>
+  </div>
 
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Engineering Service Required *</label>
-            <select 
-              name="service_type" 
-              required
-              class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-slate-300 rounded-lg p-3.5 text-sm outline-none transition-colors"
-            >
-              <option value="">Select Service Category...</option>
-              <option value="High Voltage & Power Infrastructure">High Voltage & Power Infrastructure (330KV / LV Stringing)</option>
-              <option value="Solar & Renewable Mini-Grids">Solar & Renewable Mini-Grids / Street Lighting</option>
-              <option value="Water Infrastructure & Boreholes">Water Infrastructure & Boreholes (100kL Tanks)</option>
-              <option value="Technical Procurement & BEME Evaluation">Technical Procurement & BEME Site Evaluation</option>
-              <option value="General Engineering Contracting">General Engineering Contracting</option>
-            </select>
-          </div>
+  <div>
+    <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Project Scope / Details *</label>
+    <textarea 
+      name="message" 
+      id="message"
+      rows="4" 
+      required 
+      class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
+      placeholder="Describe project location, required capacity, timeline, or tender specs..."
+    ></textarea>
+  </div>
 
-          <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Project Scope / Details *</label>
-            <textarea 
-              name="message" 
-              rows="4" 
-              required 
-              class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 text-white rounded-lg p-3.5 text-sm outline-none transition-colors"
-              placeholder="Describe project location, required capacity, timeline, or tender specs..."
-            ></textarea>
-          </div>
+  <button 
+    type="submit" 
+    class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-lg shadow-blue-600/30 transition-all text-sm tracking-wide uppercase cursor-pointer"
+  >
+    Send Quote Request via Email
+  </button>
+</form>
 
-          <button 
-            type="submit" 
-            class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-lg shadow-blue-600/30 transition-all text-sm tracking-wide uppercase cursor-pointer"
-          >
-            Submit Request for Quote
-          </button>
-        </form>
+<!-- Client-side script to construct mailto link -->
+<script>
+  const rfqForm = document.getElementById('rfq-form') as HTMLFormElement;
+
+  rfqForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = (document.getElementById('name') as HTMLInputElement).value;
+    const org = (document.getElementById('organization') as HTMLInputElement).value || 'Not Specified';
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const phone = (document.getElementById('phone') as HTMLInputElement).value;
+    const service = (document.getElementById('service_type') as HTMLSelectElement).value;
+    const details = (document.getElementById('message') as HTMLTextAreaElement).value;
+
+    const recipient = "info@basvitechnical.com";
+    const subject = encodeURIComponent(`Project Quote Request: ${service} - ${name}`);
+    
+    const bodyContent = 
+`Hello BASVI Technical Team,
+
+I am requesting a formal quote/consultation for an engineering project.
+
+--- CONTACT INFORMATION ---
+Name: ${name}
+Organization: ${org}
+Email: ${email}
+Phone: ${phone}
+
+--- PROJECT REQUIREMENTS ---
+Service Category: ${service}
+Scope / Details:
+${details}
+
+Sent from basvitechnical.com RFQ portal.`;
+
+    const body = encodeURIComponent(bodyContent);
+
+    // Launch default email client pre-filled with form details
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;});
+  </script>
       </div>
 
     </div>
